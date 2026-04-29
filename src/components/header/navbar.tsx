@@ -14,9 +14,9 @@ function Navbar() {
     <nav className={styles.navbar}>
       <div>
         <Link className={styles.logo} href="/">
-          CLOUD
+          MONO
           <GrTechnology />
-          HOSTING
+          BLOG
         </Link>
         <div className={styles.menu}>
           {toggle ? (

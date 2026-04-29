@@ -1,8 +1,8 @@
 <div align="center">
 
-# ☁️ Cloud Hosting
+# ✍️ MonoBlog
 
-### A Full-Stack PCloud Hosting Platform Built with Next.js 16
+### A Full-Stack Blogging Platform Built with Next.js 16
 
 [![Next.js](https://img.shields.io/badge/Next.js-16.1.6-black?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
 [![React](https://img.shields.io/badge/React-19.2-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://reactjs.org/)
@@ -13,7 +13,7 @@
 
 ---
 
-**A modern, responsive web application for cloud hosting services — featuring article management, user authentication, an admin dashboard, and a commenting system.**
+**A modern, responsive blogging platform — featuring article management, user authentication, an admin dashboard, and a commenting system.**
 
 [Getting Started](#-getting-started) •
 [Features](#-features) •
@@ -113,7 +113,7 @@
 ## 📁 Project Structure
 
 ```
-cloud-hosting-project2/
+monoblog/
 ├── prisma/
 │   ├── schema.prisma          # Database models (User, Article, Comment)
 │   ├── client.ts              # Prisma client instance
@@ -140,9 +140,8 @@ cloud-hosting-project2/
 │   │   ├── articles/
 │   │   │   ├── [id]/          # Dynamic article detail page
 │   │   │   └── search/        # Article search page
-│   │   ├── cart/              # Cart page
 │   │   ├── layout.tsx         # Root layout (Header + Footer)
-│   │   ├── page.tsx           # Home page (Hero + Hosting Plans)
+│   │   ├── page.tsx           # Home page (Hero + Features)
 │   │   ├── loading.tsx        # Global loading state
 │   │   ├── error.tsx          # Global error boundary
 │   │   └── not-found.tsx      # 404 page
@@ -151,7 +150,7 @@ cloud-hosting-project2/
 │   │   ├── Comments/          # Comment-related components
 │   │   ├── footer/            # Footer component
 │   │   ├── header/            # Header, Navbar, LogoutButton
-│   │   └── Home/              # Hero section, WebHostingPlan card
+│   │   └── Home/              # Hero section, feature cards
 │   ├── utils/
 │   │   ├── constants.ts       # App constants (ARTICLE_PER_PAGE, etc.)
 │   │   ├── dtos.ts            # Data Transfer Objects
@@ -253,8 +252,8 @@ erDiagram
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/YoussefAnter1/Cloud-Hosting.git
-cd Cloud-Hosting
+git clone https://github.com/YoussefAnter1/MonoBlog.git
+cd MonoBlog
 ```
 
 ### 2. Install Dependencies
@@ -306,7 +305,7 @@ npm start
 
 | Page               | Route                      | Description                            |
 | ------------------- | -------------------------- | -------------------------------------- |
-| 🏠 Home             | `/`                        | Hero section + hosting plan cards      |
+| 🏠 Home             | `/`                        | Hero section + platform highlights     |
 | 📰 Articles         | `/articles?pageNumber=1`   | Paginated list of all articles         |
 | 🔍 Search           | `/articles/search?searchText=` | Search results for articles        |
 | 📖 Article Detail   | `/articles/:id`            | Full article with comments section     |

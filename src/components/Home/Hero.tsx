@@ -1,24 +1,24 @@
 import { TiTick } from "react-icons/ti";
-import ImageCloud from "../../../public/cloud-hosting.png";
+import ImageCloud from "../../../public/cloud-hosting.png"; // TODO: replace image with blog-themed asset
 import Image from "next/image";
 import styles from "./hero.module.css";
 const Hero = () => {
   return (
     <div className={styles.hero}>
       <div className={styles.heroLeft}>
-        <h1 className={styles.title}>Cloud Hosting</h1>
+        <h1 className={styles.title}>MonoBlog</h1>
         <p className={styles.description}>
-          The best web hosting solution for your online success
+          Your space to read, write, and share ideas with the world
         </p>
         <div className={styles.services}>
           <div className={styles.serviceItem}>
-            <TiTick /> Easy To Use Control Panel
+            <TiTick /> Create & Publish Articles
           </div>
           <div className={styles.serviceItem}>
-            <TiTick /> secure Hosting
+            <TiTick /> Engage Through Comments
           </div>
           <div className={styles.serviceItem}>
-            <TiTick /> website Maintenance
+            <TiTick /> Powerful Admin Dashboard
           </div>
         </div>
       </div>

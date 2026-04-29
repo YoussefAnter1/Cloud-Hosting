@@ -17,8 +17,8 @@ import React from "react";
 // });
 
 export const metadata: Metadata = {
-  title: "Joker🖤",
-  description: "My First Next App",
+  title: "MonoBlog",
+  description: "A full-stack blogging platform built with Next.js",
 };
 interface RootLayoutProps {
   children: React.ReactNode;

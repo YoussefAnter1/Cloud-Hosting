@@ -3,7 +3,7 @@ import React from 'react'
 const Footer = () => {
   return (
     <div style={{height:"50px"}} className='flex items-center justify-center text-white bg-gray-700'>
-        copyright 2026 Cloud Hosting
+        copyright 2026 MonoBlog
     </div>
   )
 }
