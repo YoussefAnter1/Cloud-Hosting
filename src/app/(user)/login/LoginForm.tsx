@@ -3,11 +3,13 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import axios from "axios";
-const DOMAIN = "http://localhost:3000";
+import { DOMAIN } from "@/utils/constants";
+import ButtonSpinner from "@/components/ButtonSpinner";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
   const formSubmitHandler = async (
     e: React.SyntheticEvent<HTMLFormElement>,
@@ -16,15 +18,20 @@ const LoginForm = () => {
     if (email === "") return toast.error("Email is required");
     if (password === "") return toast.error("Password is required");
     try {
+      setLoading(true);
       await axios.post(`${DOMAIN}/api/users/login`, { email, password });
       router.push("/");
-    } catch (error: any) {
-      const message =
-        error?.response?.data?.message ||
-        error?.message ||
-        "Something went wrong";
-
+      setLoading(false);
+      router.refresh();
+    } catch (error: unknown) {
+      let message = "Something went wrong";
+      if (axios.isAxiosError(error)) {
+        message = error.response?.data?.message || error.message;
+      } else if (error instanceof Error) {
+        message = error.message;
+      }
       toast.error(message);
+      setLoading(false);
     }
     // console.log(email, password);
   };
@@ -46,10 +53,11 @@ const LoginForm = () => {
         onChange={(e) => setPassword(e.target.value)}
       />
       <button
+        disabled={loading}
         type="submit"
         className="text-2xl text-white bg-blue-800 p-2 rounded-lg font-bold"
       >
-        Login
+        {loading ? <ButtonSpinner /> : "Login"}
       </button>
     </form>
   );

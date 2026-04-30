@@ -1,17 +1,46 @@
 "use client";
 import { useState } from "react";
 import { toast } from "react-toastify";
-const LoginForm = () => {
+import axios from "axios";
+import { DOMAIN } from "@/utils/constants";
+import ButtonSpinner from "@/components/ButtonSpinner";
+import { useRouter } from "next/navigation";
+
+const RegisterForm = () => {
+  const router = useRouter();
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const formSubmitHandler = (e: React.SyntheticEvent<HTMLFormElement>) => {
+  const [loading, setLoading] = useState(false);
+
+  const formSubmitHandler = async (
+    e: React.SyntheticEvent<HTMLFormElement>,
+  ) => {
     e.preventDefault();
     if (username === "") return toast.error("Username is required");
     if (email === "") return toast.error("Email is required");
 
     if (password === "") return toast.error("Password is required");
-
+    try {
+      setLoading(true);
+      await axios.post(`${DOMAIN}/api/users/register`, {
+        email,
+        password,
+        username,
+      });
+      router.replace("/");
+      setLoading(false);
+      router.refresh();
+    } catch (error: unknown) {
+      let message = "Something went wrong";
+      if (axios.isAxiosError(error)) {
+        message = error.response?.data?.message || error.message;
+      } else if (error instanceof Error) {
+        message = error.message;
+      }
+      toast.error(message);
+      setLoading(false);
+    }
     // console.log(email, password);
   };
   return (
@@ -42,10 +71,10 @@ const LoginForm = () => {
         type="submit"
         className="text-2xl text-white bg-blue-800 p-2 rounded-lg font-bold"
       >
-        Register
+        {loading ? <ButtonSpinner /> : "Register"}
       </button>
     </form>
   );
 };
 
-export default LoginForm;
+export default RegisterForm;
